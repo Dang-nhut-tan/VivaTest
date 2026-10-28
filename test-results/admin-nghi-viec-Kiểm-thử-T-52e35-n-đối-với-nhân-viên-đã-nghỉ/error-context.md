@@ -1,0 +1,242 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: admin-nghi-viec.spec.mjs >> Kiểm thử Tính năng Cho nhân sự nghỉ việc trên Admin Portal (POM & BVA) >> ADM-NV-07: Xác nhận mục "Cho nghỉ việc" trong Menu thao tác đã bị ẩn đối với nhân viên đã nghỉ
+- Location: tests\specs\admin-nghi-viec.spec.mjs:131:3
+
+# Error details
+
+```
+Test timeout of 60000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: "#/"
+        - heading "VS" [level=6] [ref=e8]
+        - heading "VIVA STAR COFFEE — BackOffice" [level=6] [ref=e9]
+      - button "Thu gọn menu" [ref=e10] [cursor=pointer]
+    - generic [ref=e15]:
+      - list [ref=e16]:
+        - generic [ref=e17]: TỔNG QUAN
+        - link [ref=e18] [cursor=pointer]:
+          - /url: "#/dashboard"
+          - heading "Tổng quan" [level=6] [ref=e23]
+      - list [ref=e24]:
+        - generic [ref=e25]: QUẢN LÝ
+        - button "Nhân sự 54" [expanded] [ref=e26] [cursor=pointer]:
+          - heading "Nhân sự" [level=6] [ref=e32]
+          - generic [ref=e33]: "54"
+        - list [ref=e39]:
+          - link [ref=e40] [cursor=pointer]:
+            - /url: "#/nhan-su"
+            - heading "Nhân sự" [level=6] [ref=e44]
+          - link [ref=e45] [cursor=pointer]:
+            - /url: "#/noi-quy-lao-dong"
+            - heading "Nội quy lao động" [level=6] [ref=e49]
+          - link [ref=e50] [cursor=pointer]:
+            - /url: "#/hop-dong-sap-het-han"
+            - heading "Hợp đồng sắp hết hạn" [level=6] [ref=e54]
+          - link [ref=e55] [cursor=pointer]:
+            - /url: "#/vong-doi-nhan-su"
+            - heading "Vòng đời nhân sự" [level=6] [ref=e59]
+          - link "Yêu cầu sửa hồ sơ 3" [ref=e60] [cursor=pointer]:
+            - /url: "#/yeu-cau-sua-ho-so"
+            - heading "Yêu cầu sửa hồ sơ" [level=6] [ref=e65]
+            - generic [ref=e66]: "3"
+          - link [ref=e67] [cursor=pointer]:
+            - /url: "#/don-tu"
+            - heading "Đơn từ" [level=6] [ref=e72]
+          - link [ref=e73] [cursor=pointer]:
+            - /url: "#/xac-nhan-cong-chua-ap-dung"
+            - heading "Đơn xác nhận công chưa áp dụng" [level=6] [ref=e76]
+          - link "Phản ánh 35" [ref=e77] [cursor=pointer]:
+            - /url: "#/phan-anh"
+            - heading "Phản ánh" [level=6] [ref=e81]
+            - generic [ref=e82]: "35"
+          - link [ref=e83] [cursor=pointer]:
+            - /url: "#/cai-dat-phan-anh"
+            - heading "Cấu hình người tiếp nhận" [level=6] [ref=e88]
+          - link [ref=e89] [cursor=pointer]:
+            - /url: "#/phan-quyen"
+            - heading "Phân quyền" [level=6] [ref=e93]
+          - link [ref=e94] [cursor=pointer]:
+            - /url: "#/chuc-vu"
+            - heading "Chức vụ (gói quyền)" [level=6] [ref=e100]
+          - link "Yêu cầu đặt lại mật khẩu 16" [ref=e101] [cursor=pointer]:
+            - /url: "#/yeu-cau-mat-khau"
+            - heading "Yêu cầu đặt lại mật khẩu" [level=6] [ref=e105]
+            - generic [ref=e106]: "16"
+          - link [ref=e107] [cursor=pointer]:
+            - /url: "#/khoa-dang-nhap"
+            - heading "Tài khoản bị khoá" [level=6] [ref=e112]
+        - button [ref=e113] [cursor=pointer]:
+          - heading "Chấm công & bảng công" [level=6] [ref=e117]
+        - button [ref=e120] [cursor=pointer]:
+          - heading "Lịch & ca" [level=6] [ref=e126]
+        - button "Lương & phép 1" [ref=e129] [cursor=pointer]:
+          - heading "Lương & phép" [level=6] [ref=e134]
+          - generic [ref=e135]: "1"
+        - button [ref=e138] [cursor=pointer]:
+          - heading "Thông báo" [level=6] [ref=e142]
+        - button [ref=e145] [cursor=pointer]:
+          - heading "Đào tạo" [level=6] [ref=e149]
+        - button [ref=e152] [cursor=pointer]:
+          - heading "Cài đặt hệ thống" [level=6] [ref=e156]
+      - list [ref=e159]:
+        - generic [ref=e160]: HỖ TRỢ
+        - link [ref=e161] [cursor=pointer]:
+          - /url: "#/huong-dan"
+          - heading "Hướng dẫn" [level=6] [ref=e165]
+        - link [ref=e166] [cursor=pointer]:
+          - /url: "#/ghi-nhan-loi"
+          - heading "Ghi nhận lỗi" [level=6] [ref=e172]
+        - link [ref=e173] [cursor=pointer]:
+          - /url: "#/cai-dat-ghi-nhan-loi"
+          - heading "Cài đặt ghi nhận lỗi" [level=6] [ref=e177]
+        - link [ref=e178] [cursor=pointer]:
+          - /url: "#/media"
+          - heading "Media" [level=6] [ref=e183]
+  - generic [ref=e184]:
+    - banner [ref=e185]:
+      - generic [ref=e186]:
+        - navigation [ref=e187]:
+          - list [ref=e188]:
+            - listitem [ref=e189]:
+              - link "Trang chủ" [ref=e190] [cursor=pointer]:
+                - /url: "#/dashboard"
+            - listitem [aria-hidden] [ref=e191]
+            - listitem [ref=e193]:
+              - paragraph [ref=e194]: Nhân sự
+        - button "Tài khoản" [ref=e195] [cursor=pointer]:
+          - generic [ref=e196]: P
+    - main [ref=e197]:
+      - generic [ref=e198]:
+        - generic [ref=e199]:
+          - heading "Nhân sự" [level=4] [ref=e201]
+          - generic [ref=e204]:
+            - button [ref=e205] [cursor=pointer]
+            - button [ref=e209] [cursor=pointer]
+            - link [ref=e215] [cursor=pointer]:
+              - /url: "#/nhan-su/moi"
+        - generic [ref=e221]:
+          - generic [ref=e227]:
+            - heading "0" [level=5] [ref=e228]
+            - generic [ref=e229]: Thiếu số điện thoại
+          - generic [ref=e234]:
+            - heading "0" [level=5] [ref=e235]
+            - generic [ref=e236]: Thiếu mã nhân viên
+          - generic [ref=e241]:
+            - heading "0" [level=5] [ref=e242]
+            - generic [ref=e243]: Thiếu pháp nhân
+          - generic [ref=e250]:
+            - heading "0" [level=5] [ref=e251]
+            - generic [ref=e252]: Thiếu người quản lý (khối VP)
+          - generic [ref=e257]:
+            - heading "0" [level=5] [ref=e258]
+            - generic [ref=e259]: Chưa cấp tài khoản
+        - generic [ref=e260]:
+          - generic [ref=e262]:
+            - generic [ref=e264]:
+              - textbox "Tìm theo tên, mã, SĐT, email…" [ref=e270]: NV_OFF_6344
+              - group [aria-hidden]
+            - generic [ref=e271]:
+              - generic [ref=e272]: Khối
+              - generic [ref=e273]:
+                - combobox "Khối Tất cả" [ref=e274] [cursor=pointer]: Tất cả
+                - textbox [aria-hidden]: all
+                - group [aria-hidden]:
+                  - generic: Khối
+            - generic [ref=e275]:
+              - generic [ref=e276]: Phòng ban
+              - generic [ref=e277]:
+                - combobox "Phòng ban Tất cả" [ref=e278] [cursor=pointer]: Tất cả
+                - textbox [aria-hidden]: all
+                - group [aria-hidden]:
+                  - generic: Phòng ban
+            - generic [ref=e279]:
+              - generic [ref=e280]: Thiếu thông tin
+              - generic [ref=e281]:
+                - combobox "Thiếu thông tin Tất cả" [ref=e282] [cursor=pointer]: Tất cả
+                - textbox [aria-hidden]: all
+                - group [aria-hidden]:
+                  - generic: Thiếu thông tin
+            - generic [ref=e283]:
+              - generic [ref=e284]: Tài khoản đăng nhập
+              - generic [ref=e285]:
+                - combobox "Tài khoản đăng nhập Tất cả" [ref=e286] [cursor=pointer]: Tất cả
+                - textbox [aria-hidden]: all
+                - group [aria-hidden]:
+                  - generic: Tài khoản đăng nhập
+            - generic [ref=e287]:
+              - generic [ref=e288]: Không theo dõi chấm công
+              - generic [ref=e289]:
+                - combobox "Không theo dõi chấm công Tất cả" [ref=e290] [cursor=pointer]: Tất cả
+                - textbox [aria-hidden]: all
+                - group [aria-hidden]:
+                  - generic: Không theo dõi chấm công
+            - button "Xoá bộ lọc" [ref=e291] [cursor=pointer]
+          - generic [ref=e293]:
+            - heading "Chọn ô vuông ở đầu dòng để làm hàng loạt" [level=6] [ref=e294]
+            - generic [ref=e295]:
+              - generic: Tác vụ
+              - generic [ref=e296]:
+                - combobox "Tác vụ" [disabled] [ref=e297]
+                - textbox [disabled] [aria-hidden]
+                - group [aria-hidden]:
+                  - generic: Tác vụ
+            - button "Tiếp" [disabled]
+            - button "Bỏ chọn" [disabled]
+          - table [ref=e299]:
+            - rowgroup [ref=e300]:
+              - row [ref=e301]:
+                - columnheader [ref=e302]:
+                  - checkbox "Chọn tất cả nhân sự trong trang này" [ref=e304] [cursor=pointer]
+                - columnheader "Họ tên" [ref=e307]
+                - columnheader "Mã NV" [ref=e308]
+                - columnheader "Khối" [ref=e309]
+                - columnheader "SĐT" [ref=e310]
+                - columnheader "Quản lý trực tiếp" [ref=e311]
+                - columnheader "Pháp nhân" [ref=e312]
+                - columnheader "Trạng thái" [ref=e313]
+                - columnheader "Tài khoản" [ref=e314]
+                - columnheader [ref=e315]
+            - rowgroup [ref=e316]:
+              - row [ref=e317]:
+                - cell [ref=e318]:
+                  - checkbox "Chọn nhân sự này" [ref=e320] [cursor=pointer]
+                - cell [ref=e323]:
+                  - generic [ref=e324]:
+                    - heading "Lê Văn Test Nghỉ Việc 6344" [level=6] [ref=e325]
+                    - paragraph [ref=e326]: Phòng Hành chính Nhân sự
+                - cell "NV_OFF_6344" [ref=e327]
+                - cell "Khối văn phòng" [ref=e328]
+                - cell "0989006344" [ref=e329]
+                - cell "Chưa gán" [ref=e330]
+                - cell [ref=e332]:
+                  - paragraph [ref=e333]: FRANCHISE
+                - cell "Đã nghỉ việc" [ref=e334]
+                - cell [ref=e337]:
+                  - generic "Đã có tài khoản nhưng đang bị khoá — người này KHÔNG đăng nhập được. Mở hồ sơ, thẻ \"Tài khoản đăng nhập\" để mở lại." [ref=e338]: ⚠ Đã khoá
+                - cell [ref=e340]:
+                  - button "Thao tác" [active] [ref=e341] [cursor=pointer]
+          - generic [ref=e345]:
+            - paragraph [ref=e346]: Số dòng/trang
+            - generic [ref=e347]:
+              - combobox "Số dòng/trang 10" [ref=e348] [cursor=pointer]: "10"
+              - textbox [aria-hidden]: "10"
+            - paragraph [ref=e349]: 1–1 trên 1
+            - generic [ref=e350]:
+              - button "Go to previous page" [disabled]
+              - button "Go to next page" [disabled]
+```

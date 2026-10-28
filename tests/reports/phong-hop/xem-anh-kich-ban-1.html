@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minh Chứng 6 Bước Tái Hiện Kịch Bản 1 — Phòng Họp VivaOffice</title>
+  <style>
+    :root {
+      --primary: #0A6E37;
+      --bg: #F4F6F8;
+      --card-bg: #FFFFFF;
+      --text: #1D2939;
+      --muted: #667085;
+      --border: #EAECF0;
+      --danger: #D92D20;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 32px 16px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .header {
+      background: var(--card-bg);
+      padding: 24px 28px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(16,24,40,0.06);
+      border-left: 6px solid var(--primary);
+    }
+    .header h1 {
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .header p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .steps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .step-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(16,24,40,0.06);
+      border: 1px solid var(--border);
+    }
+    .step-header {
+      padding: 16px 24px;
+      background: #FAFAFA;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .step-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .step-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .step-desc {
+      padding: 16px 24px 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .step-desc strong {
+      color: var(--text);
+    }
+    .step-desc .alert-text {
+      color: var(--danger);
+      font-weight: 700;
+    }
+    .image-container {
+      padding: 16px 24px 24px;
+      text-align: center;
+      background: #F8F9FA;
+    }
+    .image-container img {
+      max-width: 100%;
+      max-height: 700px;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(16,24,40,0.08);
+      cursor: zoom-in;
+      transition: transform 0.2s ease;
+    }
+    .image-container img:hover {
+      transform: scale(1.01);
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Kịch Bản 1: Khung Giờ Quá Khứ Không Bị Vô Hiệu Hóa Trên Lưới</h1>
+      <p>Báo cáo kiểm chứng trực tiếp bằng Playwright trên môi trường Staging (Pixel 7 Viewport: 412x915). Nhấp vào ảnh để phóng to.</p>
+    </div>
+
+    <div class="steps-grid">
+      <!-- Bước 1 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Bước 1</span>
+          <span class="step-title">Mở trang Đăng nhập & Điền thông tin nhân viên</span>
+        </div>
+        <div class="step-desc">
+          Tài khoản kiểm thử: <strong>NVVP01AUTO</strong> (Mã nhân viên) · Mật khẩu: <strong>Password@123</strong>.
+        </div>
+        <div class="image-container">
+          <img src="./kb1-step1-dang-nhap.png" alt="Bước 1: Đăng nhập" onclick="window.open(this.src)">
+        </div>
+      </div>
+
+      <!-- Bước 2 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Bước 2</span>
+          <span class="step-title">Màn hình Trang chủ — Nhận diện thẻ lối tắt Đặt phòng họp</span>
+        </div>
+        <div class="step-desc">
+          Nhân viên văn phòng thấy thẻ lối vào nhanh <strong>"Đặt phòng họp - Giữ phòng họp cho phòng ban của bạn"</strong> (VBO-HP-11).
+        </div>
+        <div class="image-container">
+          <img src="./kb1-step2-trang-chu.png" alt="Bước 2: Trang chủ" onclick="window.open(this.src)">
+        </div>
+      </div>
+
+      <!-- Bước 3 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Bước 3</span>
+          <span class="step-title">Lưới lịch ngày "Hôm nay" — Các ô giờ quá khứ vẫn sáng</span>
+        </div>
+        <div class="step-desc">
+          Thời điểm kiểm thử là buổi trưa/chiều, nhưng các khung giờ buổi sáng (<strong>07:30, 08:00, 08:30, 09:00, 10:00, 11:00</strong>) vẫn hiển thị nút trắng có viền và hiệu ứng bấm.
+        </div>
+        <div class="image-container">
+          <img src="./kb1-step3-luoi-hom-nay.png" alt="Bước 3: Lưới hôm nay" onclick="window.open(this.src)">
+        </div>
+      </div>
+
+      <!-- Bước 4 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Bước 4</span>
+          <span class="step-title">Nhấp vào ô 09:00 sáng nay — Sheet đặt phòng vẫn mở ra</span>
+        </div>
+        <div class="step-desc">
+          Hệ thống mở Bottom Sheet (VBO-HP-03) và tự động điền sẵn Giờ bắt đầu <strong>09:00</strong> và Giờ kết thúc <strong>10:00</strong> dù giờ này đã qua gần 4 tiếng.
+        </div>
+        <div class="image-container">
+          <img src="./kb1-step4-sheet-gio-cu.png" alt="Bước 4: Sheet mở với giờ cũ" onclick="window.open(this.src)">
+        </div>
+      </div>
+
+      <!-- Bước 5 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Bước 5</span>
+          <span class="step-title">Điền đầy đủ thông tin tiêu đề cuộc họp</span>
+        </div>
+        <div class="step-desc">
+          Nhập tiêu đề: <strong>Họp kiểm tra giờ cũ</strong>. Nút "Đặt phòng" hiển thị màu xanh sẵn sàng gửi.
+        </div>
+        <div class="image-container">
+          <img src="./kb1-step5-dien-thong-tin.png" alt="Bước 5: Điền thông tin" onclick="window.open(this.src)">
+        </div>
+      </div>
+
+      <!-- Bước 6 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Bước 6</span>
+          <span class="step-title">Bấm "Đặt phòng" — Bị máy chủ quăng lỗi chặn lại</span>
+        </div>
+        <div class="step-desc">
+          Hệ thống phát sinh request lên server và hiển thị alert đỏ: <span class="alert-text">"Giờ bắt đầu đã qua - chọn khung giờ khác."</span><br>
+          <em>Gây lãng phí thao tác của người dùng vì không được chặn ngay từ giao diện lưới.</em>
+        </div>
+        <div class="image-container">
+          <img src="./kb1-step6-bao-loi-gio-da-qua.png" alt="Bước 6: Lỗi giờ đã qua" onclick="window.open(this.src)">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      VivaOffice Automation Test Suite · Staging Workdemo · Playwright Mobile Pixel 7
+    </div>
+  </div>
+</body>
+</html>

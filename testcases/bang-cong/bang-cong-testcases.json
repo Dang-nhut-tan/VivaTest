@@ -1,0 +1,80 @@
+[
+  {
+    "id": "TC-BC-001",
+    "module": "Xem Bảng Công",
+    "name": "Tải giao diện Bảng công & Kiểm tra Header và Thanh chọn kỳ công",
+    "preconditions": "Tài khoản nhân viên văn phòng NVVP01AUTO đã đăng nhập hệ thống",
+    "test_data": "Kỳ công hiện tại hoặc kỳ liền kề",
+    "steps": "1. Mở trang chủ ứng dụng\n2. Điều hướng vào đường dẫn /bang-cong?web=thu\n3. Quan sát tiêu đề Header Bảng công và thanh điều hướng kỳ công",
+    "expected": "Giao diện tải hoàn tất, tiêu đề hiển thị Bảng công và thanh chọn kỳ công hiển thị Kỳ T10/2026 hoặc T11/2026 kèm trạng thái chuẩn xác.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-BC-01 & VBO-BC-02",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-BC-002",
+    "module": "Xem Bảng Công",
+    "name": "Kiểm tra Thẻ tổng kết công cuối kỳ (6 chỉ số công & 2 chỉ số OT đối chiếu Đ.107 BLLĐ)",
+    "preconditions": "Nhân viên đang xem kỳ công có dữ liệu chấm công",
+    "test_data": "Bản ghi ngày công hợp lệ ngày 16/10",
+    "steps": "1. Mở thẻ tổng kết công cuối kỳ\n2. Kiểm tra các chỉ số Ngày công, Giờ thường, Giờ đêm, OT ngày, OT đêm, Nghỉ phép\n3. Kiểm tra hàng thông tin làm thêm giờ tích lũy",
+    "expected": "Hiển thị đầy đủ Ngày công: 1 ngày, các chỉ số giờ và thanh làm thêm tích lũy kỳ công và tháng DL đối chiếu chuẩn Đ.107 BLLĐ.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-BC-03 & VBO-BC-05",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-BC-003",
+    "module": "Xem Bảng Công",
+    "name": "Kiểm tra Lưới lịch chấm công & Ký hiệu công ngày 16",
+    "preconditions": "Kỳ công đang chọn có phát sinh ngày công thực tế",
+    "test_data": "Ngày 16/10 ca VP-HC1 ký hiệu mã X",
+    "steps": "1. Cuộn đến khu vực lưới lịch chấm công\n2. Kiểm tra hàng tiêu đề 7 thứ trong tuần (T2 đến CN)\n3. Tìm ô ngày 16 trên lưới lịch",
+    "expected": "Lưới lịch hiển thị đủ 7 cột các thứ trong tuần; ô ngày 16 hiển thị số ngày 16 và ký hiệu mã công X màu xanh nổi bật.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-BC-04",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-BC-004",
+    "module": "Xem Bảng Công",
+    "name": "Mở Sheet chi tiết ngày công và kiểm tra thông tin ca & giờ làm",
+    "preconditions": "Lưới lịch đã hiển thị các ô ngày công",
+    "test_data": "Bấm vào ô ngày 16",
+    "steps": "1. Nhấp chuột vào ô ngày 16 trên lưới lịch\n2. Chờ Bottom Sheet chi tiết ngày trượt lên\n3. Kiểm tra ngày, mã ca, giờ vào/ra và công tạm tính\n4. Bấm nút Đóng để đóng sheet",
+    "expected": "Sheet mở ra hiển thị đúng ngày 16/10/2026, ca xếp VP-HC1 (08:00–17:00), các mốc giờ chấm công và đóng lại an toàn khi bấm Đóng.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-BC-06",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-BC-005",
+    "module": "Xem Bảng Công",
+    "name": "Chuyển đổi qua lại giữa các kỳ công (Kỳ trước / Kỳ sau) qua PeriodNav",
+    "preconditions": "Đang ở màn hình Bảng công",
+    "test_data": "Nút Kỳ trước và Kỳ sau",
+    "steps": "1. Bấm nút Kỳ trước trên thanh chọn kỳ công\n2. Kiểm tra khoảng ngày và nhãn kỳ được cập nhật về kỳ trước đó\n3. Bấm nút Kỳ sau để quay lại kỳ hiện tại",
+    "expected": "Hệ thống chuyển đổi mượt mà giữa các kỳ công, dữ liệu công và khoảng ngày thay đổi tương ứng mà không bị giật lag.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-BC-02",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-BC-006",
+    "module": "Xem Bảng Công",
+    "name": "Mở và đóng Sheet giải thích cách tính ngày công",
+    "preconditions": "Đang ở màn hình Bảng công",
+    "test_data": "Nút Cách tính công trên Header",
+    "steps": "1. Bấm nút Cách tính công ở góc phải Header\n2. Kiểm tra Bottom Sheet mở ra hiển thị các quy tắc tính công\n3. Bấm nút Đóng để đóng sheet",
+    "expected": "Sheet Cách tính ngày công hiển thị rõ ràng các quy tắc nghiệp vụ theo tiêu chuẩn VivaOffice và đóng lại trơn tru.",
+    "severity": "Nhỏ",
+    "priority": "P2",
+    "spec_ref": "VBO-BC-09",
+    "status": "Passed 100%"
+  }
+]

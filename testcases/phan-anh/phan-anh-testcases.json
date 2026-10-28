@@ -1,0 +1,93 @@
+[
+  {
+    "id": "TC-PA-001",
+    "module": "Kênh Phản Ánh & Khiếu Nại",
+    "name": "Đăng nhập App nhân viên, mở màn hình Gửi phản ánh & kiểm tra validation danh tính",
+    "preconditions": "Tài khoản nhân viên đã đăng nhập",
+    "test_data": "Mở /phan-anh",
+    "steps": "1. Mở tính năng Gửi phản ánh\n2. Kiểm tra tùy chọn danh tính ban đầu\n3. Thử bấm nút Gửi khi chưa chọn danh tính",
+    "expected": "Giao diện hiển thị 2 lựa chọn Ẩn danh và Đứng tên; nút Gửi bị vô hiệu hóa kèm câu nhắc yêu cầu chọn hình thức gửi.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-PA-01",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-PA-002",
+    "module": "Kênh Phản Ánh & Khiếu Nại",
+    "name": "Chọn hình thức Ẩn danh, kích hoạt Dark Theme và bảng cam kết bảo mật danh tính",
+    "preconditions": "Đang ở màn hình Gửi phản ánh",
+    "test_data": "Chọn radio Ẩn danh",
+    "steps": "1. Nhấp chọn hình thức Ẩn danh\n2. Quan sát giao diện và thông điệp hiển thị",
+    "expected": "Giao diện chuyển đổi sang Dark Theme bảo mật đặc thù, hiển thị bảng cam kết không lưu IP và không lộ danh tính người gửi.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-PA-02",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-PA-003",
+    "module": "Kênh Phản Ánh & Khiếu Nại",
+    "name": "Gửi phản ánh ẨN DANH thành công & kiểm tra cơ chế bảo mật sinh mã vé",
+    "preconditions": "Đã chọn hình thức Ẩn danh",
+    "test_data": "Chủ đề: Công việc, Nội dung phản ánh hợp lệ",
+    "steps": "1. Chọn phân loại chủ đề\n2. Nhập nội dung sự việc chi tiết\n3. Bấm Gửi phản ánh ẩn danh\n4. Quan sát mã vé và nút chuyển tiếp",
+    "expected": "Hệ thống gửi thành công, sinh mã vé ngẫu nhiên 12 ký tự; các nút chuyển tiếp bị khóa cho đến khi người dùng tích xác nhận đã lưu mã vé.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-PA-03",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-PA-004",
+    "module": "Kênh Phản Ánh & Khiếu Nại",
+    "name": "Tra cứu phản ánh ẨN DANH bằng mã vé và đối soát thông tin",
+    "preconditions": "Đã có mã vé phản ánh ẩn danh hợp lệ",
+    "test_data": "Mã vé 12 ký tự đã lưu",
+    "steps": "1. Điều hướng sang màn hình Tra cứu phản ánh /phan-anh/tra-cuu\n2. Nhập mã vé vào ô tìm kiếm\n3. Bấm Tra cứu và đối soát kết quả",
+    "expected": "Hiển thị chính xác chi tiết phản ánh ẩn danh, trạng thái Chờ tiếp nhận, nhãn Gửi ẩn danh và đối soát API trả dữ liệu chuẩn xác.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-PA-04",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-PA-005",
+    "module": "Kênh Phản Ánh & Khiếu Nại",
+    "name": "Gửi phản ánh ĐỨNG TÊN thành công & kiểm tra tính minh bạch",
+    "preconditions": "Đang ở màn hình Gửi phản ánh",
+    "test_data": "Chọn Đứng tên, chủ đề Chế độ phúc lợi",
+    "steps": "1. Chọn hình thức Đứng tên\n2. Nhập nội dung phản ánh\n3. Bấm Gửi phản ánh",
+    "expected": "Giao diện giữ Light Theme chuẩn, gửi thành công và xuất hiện banner thông báo đã lưu trực tiếp vào tài khoản nhân sự.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-PA-05",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-PA-006",
+    "module": "Kênh Phản Ánh & Khiếu Nại",
+    "name": "Xem phản ánh ĐỨNG TÊN trong danh sách Phản ánh của tôi",
+    "preconditions": "Nhân viên đã gửi phản ánh đứng tên",
+    "test_data": "Mở tab Phản ánh của tôi",
+    "steps": "1. Bấm nút Xem Phản ánh của tôi\n2. Tìm phản ánh đứng tên vừa tạo\n3. Nhấp mở rộng xem chi tiết phản ánh",
+    "expected": "Phản ánh đứng tên hiển thị đầy đủ trong danh sách, cho phép xem chi tiết tiến độ xử lý mà không cần nhập mã vé.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-PA-06",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-PA-007",
+    "module": "Kênh Phản Ánh & Khiếu Nại",
+    "name": "Xác nhận bảo mật danh tính: Phản ánh ẨN DANH không có trong Phản ánh của tôi",
+    "preconditions": "Nhân viên đã gửi cả phản ánh ẩn danh và đứng tên",
+    "test_data": "Danh sách Phản ánh của tôi và API Backend",
+    "steps": "1. Kiểm tra toàn bộ danh sách trong Phản ánh của tôi\n2. Đối soát dữ liệu API trả về",
+    "expected": "Khẳng định tuyệt đối phản ánh Ẩn danh không xuất hiện trong danh sách Phản ánh của tôi cả trên UI lẫn Backend API.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-PA-07",
+    "status": "Passed 100%"
+  }
+]

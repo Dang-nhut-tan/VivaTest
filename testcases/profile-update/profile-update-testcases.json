@@ -1,0 +1,80 @@
+[
+  {
+    "id": "TC-HS-001",
+    "module": "Cập Nhật Hồ Sơ & Ngân Hàng",
+    "name": "Đăng nhập App nhân viên và mở trang Hồ sơ",
+    "preconditions": "Tài khoản nhân viên hợp lệ đã đăng nhập",
+    "test_data": "Mở màn hình /ho-so hoặc /trang-chu",
+    "steps": "1. Đăng nhập vào ứng dụng\n2. Mở màn hình Hồ sơ cá nhân\n3. Kiểm tra các thẻ thông tin liên hệ và ngân hàng",
+    "expected": "Giao diện tải thành công, hiển thị đầy đủ thẻ Thông tin liên hệ và thẻ Tài khoản nhận lương.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-HS-01 & VBO-HS-14",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-HS-002",
+    "module": "Cập Nhật Hồ Sơ & Ngân Hàng",
+    "name": "Gửi yêu cầu cập nhật Thông tin liên hệ (SĐT & Email)",
+    "preconditions": "Đang ở trang Hồ sơ",
+    "test_data": "SĐT mới 0987654321, Email mới nv.update@vivacorp.vn",
+    "steps": "1. Bấm nút Chỉnh sửa tại thẻ Thông tin liên hệ\n2. Nhập số điện thoại và email mới\n3. Bấm Gửi yêu cầu cập nhật",
+    "expected": "Sheet đóng lại, thẻ xuất hiện huy hiệu màu cam Chờ duyệt và hiển thị thông tin chờ đối soát.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-HS-02",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-HS-003",
+    "module": "Cập Nhật Hồ Sơ & Ngân Hàng",
+    "name": "Kiểm tra Validation ràng buộc Số tài khoản ngân hàng (< 6 số)",
+    "preconditions": "Đang mở Sheet Cập nhật tài khoản ngân hàng",
+    "test_data": "Số tài khoản 1234 (4 chữ số)",
+    "steps": "1. Mở form cập nhật ngân hàng\n2. Nhập số tài khoản dưới 6 chữ số\n3. Bấm nút Gửi yêu cầu",
+    "expected": "Hệ thống báo lỗi validation Số tài khoản phải gồm 6–20 chữ số và chặn gửi yêu cầu.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-HS-14-BVA",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-HS-004",
+    "module": "Cập Nhật Hồ Sơ & Ngân Hàng",
+    "name": "Gửi yêu cầu cập nhật Tài khoản ngân hàng hợp lệ",
+    "preconditions": "Đang mở form Cập nhật ngân hàng",
+    "test_data": "Số tài khoản 19036789012345, Ngân hàng Techcombank",
+    "steps": "1. Nhập số tài khoản hợp lệ\n2. Chọn ngân hàng thụ hưởng\n3. Bấm Gửi yêu cầu cập nhật",
+    "expected": "Sheet đóng lại, thẻ Tài khoản nhận lương xuất hiện huy hiệu Chờ duyệt.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-HS-14",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-HS-005",
+    "module": "Cập Nhật Hồ Sơ & Ngân Hàng",
+    "name": "Đối soát trực tiếp Database PostgREST API",
+    "preconditions": "Đã gửi 2 yêu cầu cập nhật",
+    "test_data": "Bảng profile_update_request",
+    "steps": "1. Gọi API Backend truy vấn bảng profile_update_request theo employee_id\n2. Kiểm tra danh sách bản ghi và các trường cần cập nhật",
+    "expected": "Tồn tại ít nhất 2 bản ghi với trạng thái PENDING gồm trường phone và bank_account.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-HS-API",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-HS-006",
+    "module": "Cập Nhật Hồ Sơ & Ngân Hàng",
+    "name": "HR Admin phê duyệt yêu cầu -> Dữ liệu cập nhật chính thức, hết Chờ duyệt",
+    "preconditions": "Có yêu cầu cập nhật đang chờ duyệt",
+    "test_data": "HR Admin duyệt các yêu cầu",
+    "steps": "1. HR Admin phê duyệt các yêu cầu cập nhật hồ sơ\n2. Tải lại trang Hồ sơ của nhân viên\n3. Kiểm tra thông tin hiển thị",
+    "expected": "Số điện thoại và tài khoản ngân hàng mới được cập nhật chính thức; toàn bộ nhãn Chờ duyệt biến mất hoàn toàn.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-HS-08",
+    "status": "Passed 100%"
+  }
+]

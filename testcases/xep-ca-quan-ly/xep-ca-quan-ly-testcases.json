@@ -1,0 +1,54 @@
+[
+  {
+    "id": "TC-XCQ-001",
+    "module": "Giao Diện Quản Lý Xếp Ca",
+    "name": "Quản lý quán mở lưới xếp ca toàn cảnh hiển thị đầy đủ nhân sự và tổng giờ",
+    "preconditions": "Tài khoản Quản lý quán đã đăng nhập",
+    "test_data": "Màn hình Quản lý xếp ca",
+    "steps": "1. Mở màn hình Xếp ca quản lý\n2. Kiểm tra lưới nhân sự và bộ đếm nguyện vọng",
+    "expected": "Lưới hiển thị đầy đủ danh sách nhân viên, bộ đếm Đã đăng ký X/Y người và tổng giờ tự động.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-XC-01",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-XCQ-002",
+    "module": "Giao Diện Quản Lý Xếp Ca",
+    "name": "Sử dụng bộ lọc Chỉ người chưa đăng ký để lọc nhanh nhân sự chưa nộp ca",
+    "preconditions": "Có nhân sự chưa nộp nguyện vọng tuần",
+    "test_data": "Nút Chỉ người chưa đăng ký",
+    "steps": "1. Bấm nút Chỉ người chưa đăng ký\n2. Quan sát lưới nhân sự",
+    "expected": "Lưới lọc ẩn các nhân viên đã nộp ca, chỉ hiển thị những nhân sự chưa gửi nguyện vọng.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-XC-02",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-XCQ-003",
+    "module": "Giao Diện Quản Lý Xếp Ca",
+    "name": "Hiển thị cảnh báo viền nét đứt màu vàng khi quản lý xếp ca lệch nguyện vọng",
+    "preconditions": "Nhân viên đăng ký Muốn FT2",
+    "test_data": "Gán ca FT1 lệch nguyện vọng",
+    "steps": "1. Gán ca FT1 cho nhân viên muốn làm FT2\n2. Quan sát ô ca trên lưới",
+    "expected": "Ô ca xuất hiện viền nét đứt màu vàng (dashed warning) kèm tooltip thông báo Khác nguyện vọng.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-XC-07",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-XCQ-004",
+    "module": "Giao Diện Quản Lý Xếp Ca",
+    "name": "Kích hoạt chế độ Chọn nhiều ô để gán ca hàng loạt (Bulk Assign)",
+    "preconditions": "Đang ở lưới xếp ca",
+    "test_data": "Nút Chọn nhiều ô",
+    "steps": "1. Bấm nút Chọn nhiều ô trên thanh công cụ\n2. Click chọn đồng thời nhiều ô ca",
+    "expected": "Các ô được chọn nổi bật viền xanh đậm và thanh tác vụ gán ca hàng loạt xuất hiện.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-XC-03",
+    "status": "Passed 100%"
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "name": "vivaoffice-playwright-automation",
+  "version": "1.0.0",
+  "description": "VivaOffice E2E Playwright Automation Test Suite — POM & Multi-Role Architecture",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "allure:clean": "node -e \"require('node:fs').rmSync('allure-results',{recursive:true,force:true})\"",
+    "pretest": "npm run allure:clean",
+    "test": "playwright test",
+    "pretest:fast": "npm run allure:clean",
+    "test:fast": "playwright test --workers=4",
+    "pretest:fast:2": "npm run allure:clean",
+    "test:fast:2": "playwright test --workers=2",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report e2e-report/playwright-html-report",
+    "pretest:allure": "npm run allure:clean",
+    "test:allure": "playwright test --reporter=list,allure-playwright",
+    "pretest:allure:fast": "npm run allure:clean",
+    "test:allure:fast": "playwright test --workers=4 --reporter=list,allure-playwright",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open",
+    "allure:serve": "allure serve allure-results",
+    "test:cham-cong": "playwright test tests/specs/attendance/cham-cong-tu-chuyen-luot.spec.mjs",
+    "test:duyet-don": "playwright test tests/specs/requests/duyet-don-phan-cap.spec.mjs",
+    "test:dao-tao": "playwright test tests/specs/training/dao-tao.spec.mjs",
+    "test:bang-cong": "playwright test tests/specs/attendance/bang-cong.spec.mjs",
+    "test:don-tu": "playwright test tests/specs/requests/don-tu.spec.mjs tests/specs/requests/don-tu-overtime.spec.mjs",
+    "test:phan-anh": "playwright test tests/specs/feedback/phan-anh.spec.mjs",
+    "test:profile": "playwright test tests/specs/profile/profile-update.spec.mjs",
+    "test:auth": "playwright test tests/specs/auth/auth-phone-forgot.spec.mjs tests/specs/auth/dang-nhap-ponytail.spec.mjs",
+    "test:admin": "playwright test tests/specs/admin"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "allure-commandline": "^2.46.1",
+    "allure-playwright": "^3.14.0",
+    "playwright": "^1.64.1"
+  }
+}

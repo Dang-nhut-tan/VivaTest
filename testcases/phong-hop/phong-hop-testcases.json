@@ -1,0 +1,41 @@
+[
+  {
+    "id": "TC-PH-001",
+    "module": "Đặt Phòng Họp & Bất Cập",
+    "name": "Kiểm tra xử lý ô lịch các khung giờ trong quá khứ trên lưới đặt phòng",
+    "preconditions": "Tài khoản nhân viên đã đăng nhập",
+    "test_data": "Màn hình đặt phòng ngày hôm nay",
+    "steps": "1. Mở màn hình Đặt phòng họp\n2. Quan sát các khung giờ đã qua trong ngày\n3. Thử nhấp vào khung giờ quá khứ",
+    "expected": "Hệ thống xác minh bất cập ô giờ quá khứ vẫn clickable nhưng chặn lưu khi gửi request.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-HP-02",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-PH-002",
+    "module": "Đặt Phòng Họp & Bất Cập",
+    "name": "Xác minh ô lịch của chính mình trên lưới và lối vào Lượt của tôi",
+    "preconditions": "Nhân viên đã có lịch phòng họp đã đặt",
+    "test_data": "Ô lịch màu của tôi trên lưới",
+    "steps": "1. Tìm ô lịch đã đặt của mình trên lưới\n2. Mở qua icon Lượt của tôi ở góc phải header",
+    "expected": "Xác nhận ô lịch hiển thị đúng màu người dùng và điều hướng xem chi tiết qua Lượt của tôi.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-HP-09",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-PH-003",
+    "module": "Đặt Phòng Họp & Bất Cập",
+    "name": "Kiểm tra cơ chế Cần gấp chỉ cấp quyền cho thành viên Ban Giám Đốc (BOD)",
+    "preconditions": "Kiểm tra phân quyền tài khoản",
+    "test_data": "Tài khoản nhân viên thường vs Ban Giám Đốc",
+    "steps": "1. Mở tính năng Đặt phòng bằng tài khoản nhân viên thường\n2. Kiểm tra tùy chọn Đặt phòng cần gấp",
+    "expected": "Tính năng Cần gấp chỉ hiển thị hoặc cho phép thực thi đối với nhân sự có vai trò BOD.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VADM-HP-14",
+    "status": "Passed 100%"
+  }
+]

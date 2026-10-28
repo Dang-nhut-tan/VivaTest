@@ -1,0 +1,80 @@
+[
+  {
+    "id": "TC-DD-001",
+    "module": "Duyệt Đơn & Phân Cấp Phê Duyệt",
+    "name": "Quản lý quán (STORE_MANAGER) duyệt đơn xin nghỉ phép của nhân viên quán",
+    "preconditions": "Nhân viên quán gửi đơn chờ duyệt; Quản lý quán được gán store_id",
+    "test_data": "Tài khoản VG900002 / QuanLyThu@2026, nhân viên Nguyễn Văn Pha Chế Quán 1",
+    "steps": "1. Đăng nhập tài khoản Quản lý quán VG900002\n2. Mở màn hình /duyet-don?web=thu\n3. Tìm thẻ đơn của nhân viên quán\n4. Nhấn nút Duyệt",
+    "expected": "Thẻ đơn hiển thị đầy đủ thông tin; nút Duyệt khả dụng và phê duyệt đơn thành công.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "viva_auth.nguoi_duyet_cua, SPEC-DD-01, VBO-DD-01",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-DD-002",
+    "module": "Duyệt Đơn & Phân Cấp Phê Duyệt",
+    "name": "Phó quản lý quán (DEPUTY_MANAGER) có quyền xem nhưng KHÔNG được duyệt (Read-only Guard)",
+    "preconditions": "Quán có đơn chờ duyệt; người xem có vai trò DEPUTY_MANAGER",
+    "test_data": "Tài khoản VG900006 / PhoQuanLy@2026",
+    "steps": "1. Đăng nhập tài khoản Phó quản lý VG900006\n2. Mở màn hình /duyet-don?web=thu\n3. Kiểm tra danh sách đơn và trạng thái các nút bấm",
+    "expected": "Phó quản lý xem được đơn; nút Duyệt và Từ chối bị vô hiệu hoá kèm câu giải thích chỉ xem.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "TL-31 câu 9, SPEC-NS-09, VBO-DD-01",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-DD-003",
+    "module": "Duyệt Đơn & Phân Cấp Phê Duyệt",
+    "name": "Nhân viên văn phòng gửi đơn -> Trưởng phòng (DEPT_HEAD) duyệt đơn trong tab Đơn nhân viên",
+    "preconditions": "Nhân viên văn phòng gửi đơn; Trưởng phòng phụ trách phòng ban đó",
+    "test_data": "Tài khoản VG900008 / TruongPhong@2026, nhân sự Lê Văn Phòng",
+    "steps": "1. Đăng nhập tài khoản Trưởng phòng VG900008\n2. Mở màn hình /duyet-don?web=thu\n3. Chọn tab Đơn nhân viên phòng\n4. Bấm nút Duyệt trên thẻ đơn",
+    "expected": "Hiển thị thanh tab 2 ngăn VBO-DD-08; đơn nhân viên hiển thị đúng và duyệt thành công.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "viva_auth.nguoi_duyet_cua, SPEC-DD-04, VBO-DD-08",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-DD-04",
+    "module": "Duyệt Đơn & Phân Cấp Phê Duyệt",
+    "name": "Trưởng phòng xin nghỉ phép -> Hệ thống chặn tự duyệt (Đơn của tôi không có nút Duyệt)",
+    "preconditions": "Trưởng phòng đã nộp đơn xin nghỉ phép cá nhân",
+    "test_data": "Tài khoản VG900008 / TruongPhong@2026, đơn do chính VG900008 gửi",
+    "steps": "1. Đăng nhập tài khoản Trưởng phòng VG900008\n2. Mở màn hình /duyet-don?web=thu\n3. Kiểm tra tab Đơn nhân viên phòng (đơn bị lọc bỏ)\n4. Chuyển sang tab Đơn của tôi",
+    "expected": "Đơn không xuất hiện ở tab Đơn nhân viên phòng; tại tab Đơn của tôi nút Duyệt/Từ chối bị ẩn hoàn toàn kèm cảnh báo nghiệp vụ.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "duyet-14b.sql: t.nd <> p_employee_id, SPEC-NS-87, SPEC-DD-05, laDonCuaToi",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-DD-005",
+    "module": "Duyệt Đơn & Phân Cấp Phê Duyệt",
+    "name": "CEO đăng nhập -> Hệ thống thu hẹp bộ lọc, chỉ hiện đơn Trưởng phòng và ẩn đơn nhân viên thường",
+    "preconditions": "Hệ thống có đồng thời đơn của nhân viên quán và đơn của Trưởng phòng",
+    "test_data": "Tài khoản VG900009 / TongGiamDoc@2026",
+    "steps": "1. Đăng nhập tài khoản CEO VG900009\n2. Mở màn hình /duyet-don?web=thu\n3. Kiểm tra banner cảnh báo VBO-DD-09 và danh sách thẻ đơn",
+    "expected": "Banner chỉ hiện đơn Trưởng phòng xuất hiện; đơn nhân viên quán bị ẩn; đơn Trưởng phòng hiển thị rõ ràng.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "SPEC-DD-07, locDonTheoVaiNguoiGui, VAI_NGUOI_GUI_CEO_THAY, VBO-DD-09",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-DD-006",
+    "module": "Duyệt Đơn & Phân Cấp Phê Duyệt",
+    "name": "CEO phê duyệt đơn xin nghỉ phép của Trưởng phòng thành công",
+    "preconditions": "Trưởng phòng đã gửi đơn xin nghỉ phép chờ CEO phê duyệt",
+    "test_data": "Tài khoản CEO VG900009 / TongGiamDoc@2026, đơn của Đặng Trưởng Phòng Kế Hoạch",
+    "steps": "1. Đăng nhập tài khoản CEO VG900009\n2. Mở màn hình /duyet-don?web=thu\n3. Tìm thẻ đơn của Trưởng phòng\n4. Bấm nút Duyệt",
+    "expected": "CEO duyệt đơn của Trưởng phòng thành công; đơn chuyển sang trạng thái đã phê duyệt.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "viva_auth.nguoi_duyet_cua (nhánh can_admin_config), SPEC-DD-07, SPEC-NS-124",
+    "status": "Passed 100%"
+  }
+]

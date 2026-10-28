@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Màn Hình Quản Lý Xếp Ca Cho Nhiều Nhân Viên — VivaOffice</title>
+  <style>
+    :root {
+      --primary: #107569;
+      --primary-light: #e6f4f1;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 32px 16px;
+    }
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #044e45;
+    }
+    p.lead {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    .status-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .status-box {
+      background: #f1f5f9;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+    }
+    .status-box strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+    .status-box span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 32px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+    }
+    .card-header {
+      padding: 16px 20px;
+      background: #fdfdfd;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-step {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .card-body {
+      padding: 20px;
+      text-align: center;
+      background: #f1f5f9;
+    }
+    .card-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      border: 1px solid var(--border);
+    }
+    .card-body.mobile img {
+      max-width: 420px;
+    }
+    .card-desc {
+      padding: 16px 20px;
+      font-size: 14px;
+      color: var(--text-muted);
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+    .highlight {
+      background: var(--warning-light);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #b45309;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">Store Manager Schedule View</span>
+      <h1>📸 Màn Hình Quản Lý Quán Xếp Ca Cho Nhiều Nhân Viên</h1>
+      <p class="lead">Hệ thống VivaOffice — Đăng ký đa dạng (Ca sáng FT1, Ca chiều FT2, Part-time PT, Xin nghỉ, Chưa ĐK) & Công cụ xếp ca của Quản lý.</p>
+      
+      <div class="status-summary">
+        <div class="status-box">
+          <strong>Trần Quán Auto</strong>
+          <span>Đăng ký: FT1, FT2, Xin nghỉ</span>
+        </div>
+        <div class="status-box">
+          <strong>NV Quán Auto 9962</strong>
+          <span>Đăng ký: FT2, FT1, Xin nghỉ</span>
+        </div>
+        <div class="status-box">
+          <strong>NV Quán Auto 4780</strong>
+          <span>Đăng ký: PT1, PT3, PT2, PT4</span>
+        </div>
+        <div class="status-box" style="border-left-color: var(--warning);">
+          <strong>NV Quán Auto 3442</strong>
+          <span>Chưa đăng ký (7/7 ngày)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Màn 1 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-step">Màn hình 01 • Toàn Cảnh Desktop / Tablet</div>
+        <div class="card-title">Lưới Xếp Ca 5 Nhân Sự Với Các Huy Hiệu Nguyện Vọng Đa Dạng</div>
+      </div>
+      <div class="card-body">
+        <img src="./01-toan-canh-luoi-xep-ca-5-nhan-su-desktop.png" alt="Toàn cảnh lưới 5 nhân sự" loading="lazy">
+      </div>
+      <div class="card-desc">
+        Giao diện rộng hiển thị đầy đủ 7 cột ngày (T2 → CN) của cả 5 nhân sự quán. Thấy rõ bộ đếm <span class="highlight">"Đã đăng ký: 3/5 người"</span>, các huy hiệu <code>Muốn FT1</code>, <code>Muốn FT2</code>, <code>Muốn PT1</code>, <code>Muốn nghỉ</code> và <code>Chưa ĐK</code>.
+      </div>
+    </div>
+
+    <!-- Màn 2 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-step">Màn hình 02 • Bộ Lọc Thông Minh</div>
+        <div class="card-title">Lọc Nhanh "Chỉ Người Chưa Đăng Ký"</div>
+      </div>
+      <div class="card-body">
+        <img src="./02-loc-nguoi-chua-dang-ky.png" alt="Bộ lọc chưa đăng ký" loading="lazy">
+      </div>
+      <div class="card-desc">
+        Khi quản lý bấm <strong>"Chỉ người chưa đăng ký"</strong>, bảng tự động ẩn người đã đăng ký và chỉ hiển thị <code>NV Quán Auto 3442</code> và <code>Lê Hoàng Cường</code>, giúp phát hiện ngay nhân viên chưa nộp ca.
+      </div>
+    </div>
+
+    <!-- Màn 3 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-step">Màn hình 03 • Cơ Chế Cảnh Báo An Toàn</div>
+        <div class="card-title">Cận Cảnh Cảnh Báo Lệch Nguyện Vọng (Viền Nét Đứt Vàng)</div>
+      </div>
+      <div class="card-body">
+        <img src="./07-can-canh-luoi-lich-va-canh-bao-lech.png" alt="Cảnh báo lệch nguyện vọng" loading="lazy">
+      </div>
+      <div class="card-desc">
+        Khi nhân viên <code>NV Quán Auto 9962</code> muốn làm ca chiều <strong>FT2</strong> nhưng quản lý xếp ca sáng <strong>FT1</strong>, ô ca lập tức xuất hiện <span class="highlight">viền nét đứt vàng</span> kèm tooltip <em>"Khác nguyện vọng"</em>.
+      </div>
+    </div>
+
+    <!-- Màn 4 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-step">Màn hình 04 • Thao Tác Hàng Loạt</div>
+        <div class="card-title">Chế Độ "Chọn Nhiều Ô" (Bulk Assign)</div>
+      </div>
+      <div class="card-body">
+        <img src="./03-che-do-chon-nhieu-o-bulk.png" alt="Chọn nhiều ô" loading="lazy">
+      </div>
+      <div class="card-desc">
+        Quản lý bật nút <strong>"Chọn nhiều ô"</strong> để tick chọn hàng loạt ô ca trên lưới, hiển thị khung viền xanh đậm 2px và thanh tác vụ gán ca nhanh cùng lúc.
+      </div>
+    </div>
+
+    <!-- Màn 5 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-step">Màn hình 05 • Giao Diện Di Động</div>
+        <div class="card-title">Màn Hình Xếp Ca Trên Mobile App (412x915)</div>
+      </div>
+      <div class="card-body mobile">
+        <img src="./05-giao-dien-mobile-luoi-xep-ca.png" alt="Giao diện Mobile" loading="lazy">
+      </div>
+      <div class="card-desc">
+        Cách quản lý quán thao tác xếp ca hàng ngày trên điện thoại di động: cố định tên nhân sự bên trái và vuốt cuộn ngày mượt mà.
+      </div>
+    </div>
+
+    <!-- Màn 6 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-step">Màn hình 06 • Bottom Sheet Gán Ca</div>
+        <div class="card-title">Biểu Mẫu Gán Ca & Kiểm Tra Luật Lao Động</div>
+      </div>
+      <div class="card-body mobile">
+        <img src="./06-sheet-gan-ca-tren-mobile.png" alt="Sheet gán ca" loading="lazy">
+      </div>
+      <div class="card-desc">
+        Chạm vào ô ca để mở <code>AssignShiftSheet</code>: chọn các ca nhóm FT/HC/PT, điền giờ OT và tự động kiểm tra trần giờ công 12h/ngày và nghỉ giữa 2 ca 11h.
+      </div>
+    </div>
+
+    <!-- Màn 7 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-step">Màn hình 07 • Hoàn Tất Phê Duyệt</div>
+        <div class="card-title">Công Bố Lịch Ca Toàn Quán Thành Công</div>
+      </div>
+      <div class="card-body">
+        <img src="./04-cong-bo-lich-ca-thanh-cong.png" alt="Công bố lịch ca" loading="lazy">
+      </div>
+      <div class="card-desc">
+        Quản lý bấm <strong>"Công bố lịch"</strong>: Tuần chuyển sang trạng thái chính thức, đồng bộ lịch làm việc tới toàn bộ nhân viên quán.
+      </div>
+    </div>
+
+    <footer>
+      <p>Báo cáo tự động được tạo bởi Playwright E2E POM Runner • VivaOffice Automation Suite</p>
+    </footer>
+  </div>
+
+</body>
+</html>

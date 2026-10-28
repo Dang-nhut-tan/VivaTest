@@ -1,0 +1,54 @@
+[
+  {
+    "id": "TC-DKC-001",
+    "module": "Đăng Ký & Duyệt Ca Làm Quán",
+    "name": "Nhân viên mở màn hình Đăng ký ca và kiểm tra thông tin thương hiệu & thời hạn",
+    "preconditions": "Nhân viên quán đã đăng nhập hệ thống",
+    "test_data": "Màn hình /dang-ky-ca",
+    "steps": "1. Mở tính năng Đăng ký ca\n2. Quan sát băng thông tin thương hiệu và hạn chốt ca",
+    "expected": "Hiển thị băng cảnh báo Đây là NGUYỆN VỌNG kèm đồng hồ đếm ngược hạn đăng ký.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-DK-01",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-DKC-002",
+    "module": "Đăng Ký & Duyệt Ca Làm Quán",
+    "name": "Mở Bottom Sheet chọn ca mong muốn cho ngày trong tuần",
+    "preconditions": "Đang ở màn hình Đăng ký ca",
+    "test_data": "Chọn Thứ Hai trong tuần",
+    "steps": "1. Nhấp vào thẻ ngày Thứ Hai\n2. Quan sát danh mục ca trong sheet",
+    "expected": "Bottom Sheet mở ra nạp động danh mục ca hiệu lực (FT1, FT2, HC1,...) và nút Nghỉ ngày này.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-DK-02",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-DKC-003",
+    "module": "Đăng Ký & Duyệt Ca Làm Quán",
+    "name": "Chọn ca nguyện vọng và kiểm tra bộ đếm ngày hoàn thành",
+    "preconditions": "Đang mở sheet chọn ca",
+    "test_data": "Chọn ca FT1 và ca FT2",
+    "steps": "1. Chọn ca FT1 cho Thứ Hai\n2. Chọn ca FT2 cho Thứ Ba\n3. Quan sát bộ đếm",
+    "expected": "Thẻ ngày cập nhật ca đã chọn, bộ đếm hiển thị tiến độ Đã chọn X/7 ngày và kích hoạt nút Gửi đăng ký.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-DK-03",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-DKC-004",
+    "module": "Đăng Ký & Duyệt Ca Làm Quán",
+    "name": "Gửi đăng ký nguyện vọng và kiểm tra Sheet xác nhận tiến trình 2 bước",
+    "preconditions": "Đã chọn ca cho các ngày trong tuần",
+    "test_data": "Nút Gửi đăng ký ca",
+    "steps": "1. Bấm nút Gửi đăng ký ca\n2. Quan sát Sheet xác nhận tiến trình",
+    "expected": "Hiển thị tiến trình Bước 1: Đã gửi nguyện vọng thành công và Bước 2: Chờ quản lý xếp lịch chính thức.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-DK-05",
+    "status": "Passed 100%"
+  }
+]

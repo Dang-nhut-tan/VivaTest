@@ -1,0 +1,80 @@
+[
+  {
+    "id": "TC-APF-001",
+    "module": "Xác Thực SĐT & Quên Mật Khẩu",
+    "name": "Đăng nhập thành công bằng Số điện thoại qua Tab Số điện thoại (VBO-DN-09)",
+    "preconditions": "Tài khoản nhân viên đã gắn số điện thoại hợp lệ",
+    "test_data": "Số điện thoại và mật khẩu đã kích hoạt",
+    "steps": "1. Mở trang Đăng nhập /dang-nhap?web=thu\n2. Nhấp chọn tab Số điện thoại\n3. Điền số điện thoại và mật khẩu\n4. Bấm Đăng nhập",
+    "expected": "Đăng nhập thành công, chuyển hướng vào Trang chủ và token xác thực được lưu an toàn.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-DN-09",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-APF-002",
+    "module": "Xác Thực SĐT & Quên Mật Khẩu",
+    "name": "Đăng xuất tài khoản và quay về trang Đăng nhập",
+    "preconditions": "Tài khoản đang đăng nhập",
+    "test_data": "Nút Đăng xuất trên menu tài khoản",
+    "steps": "1. Mở menu tài khoản\n2. Bấm nút Đăng xuất\n3. Quan sát giao diện",
+    "expected": "Hệ thống xóa sạch phiên làm việc và điều hướng về trang Đăng nhập an toàn.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-DN-LOGOUT",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-APF-003",
+    "module": "Xác Thực SĐT & Quên Mật Khẩu",
+    "name": "Điều hướng từ trang Đăng nhập sang trang Quên mật khẩu (/quen-mat-khau)",
+    "preconditions": "Đang ở trang Đăng nhập",
+    "test_data": "Link Quên mật khẩu",
+    "steps": "1. Nhấp chọn đường dẫn Quên mật khẩu\n2. Quan sát tiêu đề và đường dẫn",
+    "expected": "Điều hướng chính xác sang route /quen-mat-khau, hiển thị form Đặt lại mật khẩu.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-QM-01",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-APF-004",
+    "module": "Xác Thực SĐT & Quên Mật Khẩu",
+    "name": "Kiểm tra Validation form Quên mật khẩu (Chặn gửi khi ô trống)",
+    "preconditions": "Đang ở màn hình Quên mật khẩu",
+    "test_data": "Để trống ô định danh",
+    "steps": "1. Để trống trường nhập Số điện thoại hoặc Mã nhân viên\n2. Quan sát nút Gửi yêu cầu",
+    "expected": "Nút Gửi yêu cầu bị vô hiệu hóa (disabled), chỉ kích hoạt khi người dùng nhập dữ liệu.",
+    "severity": "Sai",
+    "priority": "P1",
+    "spec_ref": "VBO-QM-02",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-APF-005",
+    "module": "Xác Thực SĐT & Quên Mật Khẩu",
+    "name": "Gửi yêu cầu Quên mật khẩu bằng Số điện thoại & xác nhận câu thông báo an toàn",
+    "preconditions": "Đang ở màn hình Quên mật khẩu",
+    "test_data": "Số điện thoại hợp lệ",
+    "steps": "1. Điền số điện thoại\n2. Bấm Gửi yêu cầu\n3. Quan sát câu thông báo phản hồi",
+    "expected": "Hệ thống hiển thị thông báo an toàn VBO-QM-03 bảo mật và cho phép bấm quay lại Đăng nhập.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-QM-03",
+    "status": "Passed 100%"
+  },
+  {
+    "id": "TC-APF-006",
+    "module": "Xác Thực SĐT & Quên Mật Khẩu",
+    "name": "Gửi yêu cầu Quên mật khẩu bằng Mã nhân viên & đối soát Backend API",
+    "preconditions": "Đang ở màn hình Quên mật khẩu",
+    "test_data": "Mã nhân viên VG000101",
+    "steps": "1. Điền mã nhân viên\n2. Bấm Gửi yêu cầu\n3. Đối soát API Backend RPC xin_dat_lai_mat_khau",
+    "expected": "RPC Backend xử lý thành công, không tiết lộ tài khoản có tồn tại hay không nhằm chống tấn công dò quét.",
+    "severity": "Chặn",
+    "priority": "P0",
+    "spec_ref": "VBO-QM-RPC",
+    "status": "Passed 100%"
+  }
+]
