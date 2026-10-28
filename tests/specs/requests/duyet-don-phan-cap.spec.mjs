@@ -74,6 +74,7 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
     // Kỳ vọng: Thấy thẻ đơn của nhân viên quán mình và có nút "Duyệt"
     await duyetDonPage.expectRequestCardVisible(/Nguyễn Văn Pha Chế Quán 1/i);
     await duyetDonPage.approveFirstRequest(/Nguyễn Văn Pha Chế Quán 1/i);
+    await duyetDonPage.expectApprovalSuccessToast();
   });
 
   test('TC-DD-02: Phó quản lý quán (DEPUTY_MANAGER) có quyền xem nhưng KHÔNG được duyệt (Read-only Guard)', async () => {
@@ -159,6 +160,7 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
     // Thấy đơn nhân sự phòng mình và duyệt thành công
     await duyetDonPage.expectRequestCardVisible(/Lê Văn Phòng/i);
     await duyetDonPage.approveFirstRequest(/Lê Văn Phòng/i);
+    await duyetDonPage.expectApprovalSuccessToast();
   });
 
   test('TC-DD-04: Trưởng phòng xin nghỉ phép -> Hệ thống chặn tự duyệt (Đơn của tôi không có nút Duyệt)', async () => {
@@ -301,5 +303,6 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
     // Kỳ vọng: CEO duyệt đơn của Trưởng phòng thành công
     await duyetDonPage.expectRequestCardVisible(/Đặng Trưởng Phòng/i);
     await duyetDonPage.approveFirstRequest(/Đặng Trưởng Phòng/i);
+    await duyetDonPage.expectApprovalSuccessToast();
   });
 });

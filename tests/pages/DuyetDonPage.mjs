@@ -98,6 +98,26 @@ export class DuyetDonPage extends BasePage {
     await expect(btn).toBeVisible({ timeout: 5000 });
     await expect(btn).toBeEnabled({ timeout: 5000 });
     await btn.click();
+
+    // Xác nhận không xuất hiện toast báo lỗi "Yêu cầu không hợp lệ"
+    await expect(this.page.getByText(/yêu cầu không hợp lệ/i)).toBeHidden();
+  }
+
+  /**
+   * Kiểm tra thông báo duyệt thành công xuất hiện trên màn hình
+   */
+  async expectApprovalSuccessToast() {
+    const toast = this.page.getByText(/đã duyệt/i).first();
+    await expect(toast).toBeVisible({ timeout: 8000 });
+    await expect(this.page.getByText(/yêu cầu không hợp lệ/i)).toBeHidden();
+  }
+
+  /**
+   * Kiểm tra thông báo từ chối thành công xuất hiện trên màn hình
+   */
+  async expectRejectSuccessToast() {
+    const toast = this.page.getByText(/đã từ chối/i).first();
+    await expect(toast).toBeVisible({ timeout: 5000 });
   }
 
   /**
@@ -159,6 +179,8 @@ export class DuyetDonPage extends BasePage {
       userRolesMap = {},
       employeeNamesMap = {}
     } = scenarioConfig;
+
+    const mockRequests = JSON.parse(JSON.stringify(requests));
 
     // Cập nhật session storage và localStorage để RequireRole nhận diện đúng vai trò
     try {
@@ -271,6 +293,18 @@ export class DuyetDonPage extends BasePage {
       // 4. Leave Request
       if (pathname.includes('/leave_request')) {
         if (method === 'PATCH') {
+          try {
+            const patchData = route.request().postDataJSON();
+            if (patchData?.status) {
+              for (const r of mockRequests) {
+                if (pathname.includes(r.id)) {
+                  r.status = patchData.status;
+                  if (patchData.reject_reason) r.reject_reason = patchData.reject_reason;
+                  if (patchData.rejected_by) r.rejected_by = patchData.rejected_by;
+                }
+              }
+            }
+          } catch {}
           return route.fulfill({
             status: 200,
             contentType: 'application/json',
@@ -280,7 +314,54 @@ export class DuyetDonPage extends BasePage {
         return route.fulfill({
           status: 200,
           contentType: 'application/json',
-          body: JSON.stringify(requests)
+          body: JSON.stringify(mockRequests)
+        });
+      }
+
+      // 4b. RPC duyet_don_nghi (Hàm kho phê duyệt nghỉ phép - SPEC-PH-69 & YC-64)
+      if (pathname.includes('duyet_don_nghi')) {
+        let reqId = 'req-leave-01';
+        try {
+          const postData = route.request().postDataJSON();
+          if (postData?.p_id || postData?.id) reqId = postData.p_id || postData.id;
+        } catch {}
+        const matched = mockRequests.find(r => r.id === reqId);
+        if (matched) matched.status = 'approved';
+        return route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            ok: true,
+            donId: reqId,
+            daApDungTuTruoc: false,
+            soNgayTruPhep: 2,
+            soNgayKhongLuong: 0,
+            canhBao: ''
+          })
+        });
+      }
+
+      // 4c. RPC duyet_doi_ca (Hàm kho phê duyệt đổi ca - SPEC-CA-60)
+      if (pathname.includes('duyet_doi_ca')) {
+        return route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            ok: true,
+            daXuLyTruocDo: false,
+            soDongLichDaDoi: 1
+          })
+        });
+      }
+
+      // 4d. RPC duyet_doi_dia_diem
+      if (pathname.includes('duyet_doi_dia_diem')) {
+        return route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            ok: true
+          })
         });
       }
 

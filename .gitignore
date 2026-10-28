@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Test Artifacts & Outputs
+test-results/
+e2e-report/
+allure-results/
+allure-report/
+.playwright-mcp/
+
+# Temporary & Dump files
+*.log
+*.tmp
+report_dump.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+!.env.example

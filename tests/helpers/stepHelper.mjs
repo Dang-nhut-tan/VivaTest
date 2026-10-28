@@ -46,7 +46,8 @@ export async function stepWithScreenshot(testInfo, page, stepTitle, actionFn, op
         const buffer = await page.screenshot({ fullPage });
 
         // Attach to Playwright HTML Report
-        await allure.attachment(`Ảnh sau bước - ${stepTitle}`, buffer, 'image/png');
+        const attachmentName = `Ảnh sau bước - ${stepTitle}.png`;
+        await allure.attachment(attachmentName, buffer, 'image/png');
 
         // Optionally persist to disk (e.g. for README or GitHub tickets)
         if (savePath) {
@@ -66,7 +67,8 @@ export async function stepWithScreenshot(testInfo, page, stepTitle, actionFn, op
       if (page && !page.isClosed() && testInfo) {
         try {
           const failBuffer = await page.screenshot({ fullPage });
-          await allure.attachment(`Ảnh lỗi tại bước - ${stepTitle}`, failBuffer, 'image/png');
+          const failAttachmentName = `Ảnh lỗi tại bước - ${stepTitle}.png`;
+          await allure.attachment(failAttachmentName, failBuffer, 'image/png');
         } catch {
           // Best effort failure screenshot
         }
@@ -93,7 +95,8 @@ export async function captureStepEvidence(testInfo, page, title, options = {}) {
       await waitForUIStable(page);
     }
     const buffer = await page.screenshot({ fullPage });
-    await allure.attachment(title, buffer, 'image/png');
+    const attachmentName = title.endsWith('.png') ? title : `${title}.png`;
+    await allure.attachment(attachmentName, buffer, 'image/png');
 
     if (savePath) {
       const dir = path.dirname(savePath);
