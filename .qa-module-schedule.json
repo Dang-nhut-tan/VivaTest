@@ -1,0 +1,120 @@
+{
+  "queue": [
+    {
+      "slug": "cham-cong",
+      "name": "Chấm Công Lộ Trình Đi Quán",
+      "tier": "L",
+      "priority": "P0"
+    },
+    {
+      "slug": "duyet-don",
+      "name": "Duyệt Đơn & Phân Cấp Phê Duyệt",
+      "tier": "L",
+      "priority": "P0"
+    },
+    {
+      "slug": "bang-cong",
+      "name": "Xem Bảng Công",
+      "tier": "L",
+      "priority": "P0"
+    },
+    {
+      "slug": "nghi-viec",
+      "name": "Cho Nhân Sự Nghỉ Việc Admin",
+      "tier": "L",
+      "priority": "P0"
+    },
+    {
+      "slug": "dang-nhap",
+      "name": "Đăng Nhập PWA & App",
+      "tier": "L",
+      "priority": "P0"
+    },
+    {
+      "slug": "quen-mat-khau",
+      "name": "Quên Mật Khẩu PWA",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "don-tu",
+      "name": "Đơn Từ & Phê Duyệt",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "xep-ca-quan-ly",
+      "name": "Giao Diện Quản Lý Xếp Ca",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "dang-ky-ca",
+      "name": "Đăng Ký & Duyệt Ca Làm Quán",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "dao-tao",
+      "name": "Quản Lý Đào Tạo & Lịch Học",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "store-dept",
+      "name": "Cửa Hàng & Phòng Ban Admin",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "cong-ty",
+      "name": "Quản Lý Công Ty Admin",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "profile-update",
+      "name": "Cập Nhật Hồ Sơ & Ngân Hàng",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "auth-phone-forgot",
+      "name": "Xác Thực SĐT & Quên Mật Khẩu",
+      "tier": "M",
+      "priority": "P1"
+    },
+    {
+      "slug": "phan-anh",
+      "name": "Kênh Phản Ánh & Khiếu Nại",
+      "tier": "S",
+      "priority": "P2"
+    },
+    {
+      "slug": "dang-tin",
+      "name": "Đăng Tin Nội Bộ Admin",
+      "tier": "S",
+      "priority": "P2"
+    },
+    {
+      "slug": "phong-hop",
+      "name": "Đặt Phòng Họp & Bất Cập",
+      "tier": "S",
+      "priority": "P2"
+    }
+  ],
+  "completed": [
+    "cham-cong",
+    "duyet-don"
+  ],
+  "history": [
+    {
+      "slug": "cham-cong",
+      "completed_at": "2026-10-31T16:48:24.259001+00:00"
+    },
+    {
+      "slug": "duyet-don",
+      "completed_at": "2026-11-01T05:51:37.244976+00:00"
+    }
+  ]
+}

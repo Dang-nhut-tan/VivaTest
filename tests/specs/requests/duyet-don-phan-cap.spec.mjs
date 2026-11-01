@@ -73,8 +73,10 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
 
     // Kỳ vọng: Thấy thẻ đơn của nhân viên quán mình và có nút "Duyệt"
     await duyetDonPage.expectRequestCardVisible(/Nguyễn Văn Pha Chế Quán 1/i);
+    await page.screenshot({ path: 'automation/gap/images/01-duyet-don-quan-ly-quan.png' });
     await duyetDonPage.approveFirstRequest(/Nguyễn Văn Pha Chế Quán 1/i);
     await duyetDonPage.expectApprovalSuccessToast();
+    await page.screenshot({ path: 'automation/gap/images/06-duyet-don-ceo-phe-duyet-thanh-cong.png' });
   });
 
   test('TC-DD-02: Phó quản lý quán (DEPUTY_MANAGER) có quyền xem nhưng KHÔNG được duyệt (Read-only Guard)', async () => {
@@ -117,6 +119,7 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
 
     // Hiển thị lý do chỉ xem của Phó quản lý
     await expect(page.getByText(/phó quản lý|chỉ xem|quản lý chính/i)).toBeVisible();
+    await page.screenshot({ path: 'automation/gap/images/02-duyet-don-pho-quan-ly-read-only.png' });
   });
 
   test('TC-DD-03: Nhân viên văn phòng gửi đơn -> Trưởng phòng (DEPT_HEAD) duyệt đơn trong tab Đơn nhân viên', async () => {
@@ -159,8 +162,10 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
 
     // Thấy đơn nhân sự phòng mình và duyệt thành công
     await duyetDonPage.expectRequestCardVisible(/Lê Văn Phòng/i);
+    await page.screenshot({ path: 'automation/gap/images/03-duyet-don-truong-phong-tab-nv.png' });
     await duyetDonPage.approveFirstRequest(/Lê Văn Phòng/i);
     await duyetDonPage.expectApprovalSuccessToast();
+    await page.screenshot({ path: 'automation/gap/images/06-duyet-don-ceo-phe-duyet-thanh-cong.png' });
   });
 
   test('TC-DD-04: Trưởng phòng xin nghỉ phép -> Hệ thống chặn tự duyệt (Đơn của tôi không có nút Duyệt)', async () => {
@@ -204,6 +209,7 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
     // Kỳ vọng 2: Chuyển sang ngăn "Đơn của tôi", thấy đơn của mình nhưng KHÔNG CÓ nút Duyệt/Từ chối
     await duyetDonPage.selectPanel('cua-toi');
     await duyetDonPage.expectNoApprovalButtons();
+    await page.screenshot({ path: 'automation/gap/images/04-duyet-don-chan-tu-duyet-cua-toi.png' });
   });
 
   test('TC-DD-05: CEO đăng nhập -> Hệ thống thu hẹp bộ lọc, chỉ hiện đơn Trưởng phòng và ẩn đơn nhân viên thường', async () => {
@@ -264,6 +270,7 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
 
     // Kỳ vọng 3: Đơn của Trưởng phòng Đặng Trưởng Phòng hiển thị
     await duyetDonPage.expectRequestCardVisible(/Đặng Trưởng Phòng/i);
+    await page.screenshot({ path: 'automation/gap/images/05-duyet-don-ceo-banner-thu-hep.png' });
   });
 
   test('TC-DD-06: CEO phê duyệt đơn xin nghỉ phép của Trưởng phòng thành công', async () => {
@@ -304,5 +311,6 @@ test.describe('Kiểm thử Luồng Duyệt Đơn Phân Cấp VivaOffice (POM & 
     await duyetDonPage.expectRequestCardVisible(/Đặng Trưởng Phòng/i);
     await duyetDonPage.approveFirstRequest(/Đặng Trưởng Phòng/i);
     await duyetDonPage.expectApprovalSuccessToast();
+    await page.screenshot({ path: 'automation/gap/images/06-duyet-don-ceo-phe-duyet-thanh-cong.png' });
   });
 });
