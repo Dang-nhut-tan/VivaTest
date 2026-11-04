@@ -58,7 +58,7 @@
     "preconditions": "Đang mở form Đơn xác nhận công",
     "test_data": "Ngày hôm qua, giờ vào 08:00, lý do: Quên quẹt thẻ",
     "steps": "1. Chọn ngày công đã kết thúc\n2. Điền mốc giờ vào thực tế 08:00\n3. Nhập lý do cụ thể\n4. Bấm Gửi quản lý",
-    "expected": "Đơn gửi thành công, sheet đóng lại và thẻ đơn Xác nhận công xuất hiện trong danh sách với trạng thái Chờ duyệt.",
+    "expected": "Đơn gửi thành công, sheet đóng lại, hiển thị thông báo \"Đã gửi đơn xác nhận công lên hệ thống.\" và thẻ đơn Xác nhận công xuất hiện trong danh sách với trạng thái Chờ duyệt.",
     "severity": "Chặn",
     "priority": "P0",
     "spec_ref": "VBO-DT-10",

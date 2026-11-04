@@ -89,8 +89,28 @@ export class AttendanceConfirmSheet extends BasePage {
    * @param {string} timeIn
    */
   async fillTimeIn(timeIn) {
-    await expect(this.timeInInput).toBeVisible();
-    await this.timeInInput.fill(timeIn);
+    if (await this.timeInInput.isVisible()) {
+      await this.timeInInput.fill(timeIn);
+      return;
+    }
+    const pickerButton = this.dialog.locator('button[aria-label*="Giờ vào thực tế"]').or(
+      this.timeSection.locator('button').filter({ hasText: /Chọn giờ/i }).first()
+    );
+    if (await pickerButton.isVisible()) {
+      await pickerButton.click();
+      const pickerSheet = this.page.locator('[data-section="VBO-CG-02"]');
+      await expect(pickerSheet).toBeVisible({ timeout: 5000 });
+      const manualBtn = pickerSheet.getByRole('button', { name: /Nhập tay/i });
+      if (await manualBtn.isVisible()) {
+        await manualBtn.click();
+      }
+      const timeInput = pickerSheet.locator('input[type="time"]');
+      await expect(timeInput).toBeVisible({ timeout: 5000 });
+      await timeInput.fill(timeIn);
+      const doneBtn = pickerSheet.getByRole('button', { name: /Xong/i });
+      await doneBtn.click();
+      await expect(pickerSheet).toBeHidden({ timeout: 5000 });
+    }
   }
 
   /**
@@ -98,8 +118,28 @@ export class AttendanceConfirmSheet extends BasePage {
    * @param {string} timeOut
    */
   async fillTimeOut(timeOut) {
-    await expect(this.timeOutInput).toBeVisible();
-    await this.timeOutInput.fill(timeOut);
+    if (await this.timeOutInput.isVisible()) {
+      await this.timeOutInput.fill(timeOut);
+      return;
+    }
+    const pickerButton = this.dialog.locator('button[aria-label*="Giờ ra thực tế"]').or(
+      this.timeSection.locator('button').filter({ hasText: /Chọn giờ/i }).last()
+    );
+    if (await pickerButton.isVisible()) {
+      await pickerButton.click();
+      const pickerSheet = this.page.locator('[data-section="VBO-CG-02"]');
+      await expect(pickerSheet).toBeVisible({ timeout: 5000 });
+      const manualBtn = pickerSheet.getByRole('button', { name: /Nhập tay/i });
+      if (await manualBtn.isVisible()) {
+        await manualBtn.click();
+      }
+      const timeInput = pickerSheet.locator('input[type="time"]');
+      await expect(timeInput).toBeVisible({ timeout: 5000 });
+      await timeInput.fill(timeOut);
+      const doneBtn = pickerSheet.getByRole('button', { name: /Xong/i });
+      await doneBtn.click();
+      await expect(pickerSheet).toBeHidden({ timeout: 5000 });
+    }
   }
 
   /**
@@ -163,15 +203,23 @@ export class AttendanceConfirmSheet extends BasePage {
    * @param {string} [param0.timeOut]
    * @param {string} param0.note
    */
+  /**
+   * Kiểm tra thông báo Toast gửi đơn xác nhận công thành công xuất hiện trên màn hình (SPEC-CC-103)
+   */
+  async expectSuccessToast() {
+    const toast = this.page.getByText(/Đã gửi đơn xác nhận công lên hệ thống/i);
+    await expect(toast).toBeVisible({ timeout: 5000 });
+  }
+
   async submitAttendanceConfirm({ date, reason, timeIn, timeOut, note }) {
     if (date) {
       await this.fillDate(date);
     }
     await this.selectReason(reason);
-    if (timeIn && await this.timeInInput.isVisible()) {
+    if (timeIn) {
       await this.fillTimeIn(timeIn);
     }
-    if (timeOut && await this.timeOutInput.isVisible()) {
+    if (timeOut) {
       await this.fillTimeOut(timeOut);
     }
     if (note) {

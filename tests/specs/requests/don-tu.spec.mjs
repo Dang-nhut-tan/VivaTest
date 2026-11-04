@@ -170,6 +170,9 @@ test.describe('Kiểm thử Tính năng Đơn từ & Đơn xác nhận công (PO
     // Kỳ vọng 1: Sheet xác nhận công tự động đóng
     await donTuPage.attendanceConfirmSheet.expectClosed();
 
+    // Kỳ vọng 2: Hiển thị Toast thông báo biên nhận đã gửi đơn lên hệ thống (SPEC-CC-103)
+    await donTuPage.expectAttendanceConfirmSuccessToast();
+
     // Đồng bộ danh sách
     await donTuPage.reload();
 

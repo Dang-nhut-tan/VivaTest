@@ -26,7 +26,7 @@ Ngày hôm qua, giờ vào 08:00, lý do: Quên quẹt thẻ
 
 ## 4. Kết Quả Mong Đợi (Expected Results)
 
-- [x] Đơn gửi thành công, sheet đóng lại và thẻ đơn Xác nhận công xuất hiện trong danh sách với trạng thái Chờ duyệt.
+- [x] Đơn gửi thành công, sheet đóng lại, hiển thị thông báo "Đã gửi đơn xác nhận công lên hệ thống." và thẻ đơn Xác nhận công xuất hiện trong danh sách với trạng thái Chờ duyệt.
 
 ## 5. Ghi Chú & Lưu Ý
 

@@ -104,6 +104,14 @@ export class DonTuPage extends BasePage {
   /**
    * Tải lại trang và chờ dữ liệu mới
    */
+  /**
+   * Kiểm tra thông báo Toast gửi đơn xác nhận công thành công xuất hiện trên màn hình (SPEC-CC-103)
+   */
+  async expectAttendanceConfirmSuccessToast() {
+    const toast = this.page.getByText(/Đã gửi đơn xác nhận công lên hệ thống/i);
+    await expect(toast).toBeVisible({ timeout: 5000 });
+  }
+
   async reload() {
     await this.page.reload({ waitUntil: 'domcontentloaded' });
     await this.expectLoaded();
