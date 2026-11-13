@@ -21,6 +21,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+# Cấp quyền xuất bản web lên GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   test:
     name: Run Shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
@@ -44,7 +50,6 @@ jobs:
         run: npm ci
 
       - name: Cài đặt Google Chrome & Thư viện hệ thống
-        # Dự án cấu hình channel: 'chrome' trong playwright.config.mjs
         run: npx playwright install --with-deps chrome
 
       - name: Chạy Playwright Tests (Headless + Sharding)
@@ -60,11 +65,14 @@ jobs:
           path: allure-results/
           retention-days: 2
 
-  merge-reports:
-    name: Merge Allure Reports (Gộp 4 Shards)
+  merge-and-deploy:
+    name: Merge & Deploy Allure Report
     needs: test
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout mã nguồn
         uses: actions/checkout@v4
@@ -94,9 +102,29 @@ jobs:
       - name: Tạo Báo Cáo Allure Tổng Hợp Đã Gộp
         run: npx allure generate all-allure-results --clean -o combined-allure-report
 
-      - name: Xuất bản Báo Cáo Tổng Hợp Duy Nhất (Artifact)
+      - name: Lưu trữ Báo Cáo Artifact (Dự phòng tải zip)
         uses: actions/upload-artifact@v4
         with:
           name: combined-allure-report
           path: combined-allure-report/
           retention-days: 14
+
+      # Xuất bản trực tiếp lên GitHub Pages (Xem online không cần tải zip)
+      - name: Cấu hình GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Đóng gói trang web Allure Report
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: combined-allure-report/
+
+      - name: Triển khai trực tiếp lên GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Đính kèm Link Báo Cáo Trực Tuyến vào GitHub Summary
+        run: |
+          echo "## 📊 Báo Cáo Kiểm Thử Allure Report Trực Tuyến" >> $GITHUB_STEP_SUMMARY
+          echo "Toàn bộ 103 test cases từ 4 Shards đã được gộp thành công và xuất bản lên GitHub Pages:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "👉 **[Bấm vào đây để xem trực tiếp Allure Report trên Web](https://dang-nhut-tan.github.io/VivaTest/)**" >> $GITHUB_STEP_SUMMARY
