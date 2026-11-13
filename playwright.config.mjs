@@ -39,4 +39,48 @@ export default defineConfig({
     video: 'off',
     trace: 'retain-on-failure',
   },
+  projects: [
+    // 1. Setup Project: Đăng nhập 1 lần duy nhất, lưu session vào .auth/*.json
+    {
+      name: 'setup',
+      testDir: './tests/setup',
+      testMatch: /.*\.setup\.mjs/,
+    },
+    // 2. Admin Portal: Chạy giao diện quản trị desktop, nạp session admin
+    {
+      name: 'admin-portal',
+      testDir: './tests/specs/admin',
+      dependencies: ['setup'],
+      use: {
+        viewport: { width: 1280, height: 800 },
+        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        isMobile: false,
+        hasTouch: false,
+        storageState: 'playwright/.auth/admin.json',
+      },
+    },
+    // 3. Mobile Employee App: Chạy các nghiệp vụ nhân viên, nạp session employee
+    {
+      name: 'employee-mobile',
+      testDir: './tests/specs',
+      testIgnore: ['**/admin/**', '**/auth/**'],
+      dependencies: ['setup'],
+      use: {
+        viewport: { width: 412, height: 915 },
+        isMobile: true,
+        hasTouch: true,
+        storageState: 'playwright/.auth/employee.json',
+      },
+    },
+    // 4. Auth Specs: Kiểm thử trực tiếp form đăng nhập/quên mật khẩu (KHÔNG nạp storageState)
+    {
+      name: 'auth-flows',
+      testDir: './tests/specs/auth',
+      use: {
+        viewport: { width: 412, height: 915 },
+        isMobile: true,
+        hasTouch: true,
+      },
+    },
+  ],
 });

@@ -10,6 +10,62 @@ const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoid2ViX2Fub24iLC
 export { getAdminToken, provisionTestEmployee };
 
 /**
+ * Tạo Đơn xin nghỉ phép trực tiếp qua API Backend (Bypass UI để chuẩn bị dữ liệu kiểm thử)
+ * @param {string} adminToken
+ * @param {{ employeeId: string, startDate: string, endDate: string, reason?: string }} params
+ * @returns {Promise<object>}
+ */
+export async function createLeaveRequestViaApi(adminToken, { employeeId, startDate, endDate, reason = 'Nghỉ phép kiểm thử tự động' }) {
+  const res = await fetch(`${API_BASE}/leave_request`, {
+    method: 'POST',
+    headers: {
+      'apikey': API_KEY,
+      'Authorization': `Bearer ${adminToken}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation'
+    },
+    body: JSON.stringify({
+      employee_id: employeeId,
+      start_date: startDate,
+      end_date: endDate,
+      reason,
+      status: 'pending'
+    })
+  });
+  if (!res.ok) throw new Error(`Create leave_request via API failed: ${res.status} ${await res.text()}`);
+  const created = await res.json();
+  return Array.isArray(created) ? created[0] : created;
+}
+
+/**
+ * Tạo Đơn xác nhận công trực tiếp qua API Backend (Bypass UI để chuẩn bị dữ liệu kiểm thử)
+ * @param {string} adminToken
+ * @param {{ employeeId: string, workDate: string, reasonCode?: string, note?: string }} params
+ * @returns {Promise<object>}
+ */
+export async function createAttendanceConfirmRequestViaApi(adminToken, { employeeId, workDate, reasonCode = 'QUEN_CHAM_VAO', note = 'Bổ sung công kiểm thử tự động' }) {
+  const res = await fetch(`${API_BASE}/attendance_confirm_request`, {
+    method: 'POST',
+    headers: {
+      'apikey': API_KEY,
+      'Authorization': `Bearer ${adminToken}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation'
+    },
+    body: JSON.stringify({
+      employee_id: employeeId,
+      work_date: workDate,
+      reason_code: reasonCode,
+      note,
+      status: 'pending'
+    })
+  });
+  if (!res.ok) throw new Error(`Create attendance_confirm_request via API failed: ${res.status} ${await res.text()}`);
+  const created = await res.json();
+  return Array.isArray(created) ? created[0] : created;
+}
+
+/**
  * Lấy danh sách Đơn xác nhận công của nhân viên
  * @param {string} empId
  * @param {string} adminToken
