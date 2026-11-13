@@ -6,12 +6,9 @@ test-results/
 e2e-report/
 allure-results/
 allure-report/
+combined-allure-report/
 .playwright-mcp/
-<<<<<<< HEAD
 playwright/
-=======
-playwright/.auth/
->>>>>>> 4fc303887046f6f2a5c8afc3f9271fb0690425ed
 
 # Temporary & Dump files
 *.log

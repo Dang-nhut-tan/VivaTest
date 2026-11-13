@@ -48,17 +48,55 @@ jobs:
         run: npx playwright install --with-deps chrome
 
       - name: Chạy Playwright Tests (Headless + Sharding)
-        # Mặc định Playwright chạy headless trên CI (và config đã bật headless: true)
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         env:
           CI: true
 
-      - name: Lưu trữ kết quả test từng Shard
+      - name: Lưu trữ Allure Results của Shard
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: test-results-shard-${{ matrix.shardIndex }}
-          path: |
-            allure-results/
-            e2e-report/
-          retention-days: 7
+          name: allure-results-shard-${{ matrix.shardIndex }}
+          path: allure-results/
+          retention-days: 2
+
+  merge-reports:
+    name: Merge Allure Reports (Gộp 4 Shards)
+    needs: test
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mã nguồn
+        uses: actions/checkout@v4
+
+      - name: Cài đặt Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Cài đặt Dependencies
+        run: npm ci
+
+      - name: Cài đặt Java (Cần thiết cho Allure CLI)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Tải về Allure Results từ cả 4 Shards
+        uses: actions/download-artifact@v4
+        with:
+          path: all-allure-results
+          pattern: allure-results-shard-*
+          merge-multiple: true
+
+      - name: Tạo Báo Cáo Allure Tổng Hợp Đã Gộp
+        run: npx allure generate all-allure-results --clean -o combined-allure-report
+
+      - name: Xuất bản Báo Cáo Tổng Hợp Duy Nhất (Artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: combined-allure-report
+          path: combined-allure-report/
+          retention-days: 14
