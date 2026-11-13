@@ -94,7 +94,7 @@ export async function waitForUIStable(page, options = {}) {
     }
   }
 
-  // 5. Handle pending animations and transitions
+  // 5. Handle pending animations and transitions (bảo vệ bằng timeout 800ms tránh treo vô hạn)
   if (waitForAnimations) {
     try {
       await page.evaluate(() => {
@@ -102,7 +102,10 @@ export async function waitForUIStable(page, options = {}) {
         const anims = document.getAnimations().filter(
           (a) => a.playState === 'running' && !(a.animationName && a.animationName.includes('infinite'))
         );
-        return Promise.all(anims.map((a) => a.finished.catch(() => {})));
+        return Promise.race([
+          Promise.all(anims.map((a) => a.finished.catch(() => {}))),
+          new Promise((resolve) => setTimeout(resolve, 800))
+        ]);
       }).catch(() => {});
     } catch {
       // Ignore context errors

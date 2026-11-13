@@ -7,7 +7,7 @@ e2e-report/
 allure-results/
 allure-report/
 .playwright-mcp/
-playwright/.auth/
+playwright/
 
 # Temporary & Dump files
 *.log

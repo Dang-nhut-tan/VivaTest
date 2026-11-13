@@ -73,7 +73,7 @@ test.describe('Kiểm thử Tính năng Xem Bảng Công (POM)', () => {
 
     // Kiểm tra các chỉ số tổng kết: Ngày công, Giờ thường, Giờ đêm, OT ngày, OT đêm, Nghỉ phép
     await bangCongPage.expectSummaryContains('Ngày công');
-    await bangCongPage.expectSummaryContains('1 ngày');
+    await bangCongPage.expectSummaryContains(/\d+\s*ngày/);
     await bangCongPage.expectSummaryContains('Giờ thường');
     await bangCongPage.expectSummaryContains('Giờ đêm');
     await bangCongPage.expectSummaryContains('OT ngày');

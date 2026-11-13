@@ -11,7 +11,7 @@ export class AdminPersonnelPage extends BasePage {
 
     // Màn hình danh sách nhân sự (#/nhan-su)
     this.pageTitle = page.getByRole('heading', { name: 'Nhân sự', level: 4 });
-    this.searchInput = page.getByPlaceholder(/Tìm theo tên/i).or(page.getByPlaceholder(/Tìm/i));
+    this.searchInput = page.getByPlaceholder(/Tìm theo tên/i);
     this.personnelTable = page.getByRole('table');
     this.tableRows = page.getByRole('row');
 
