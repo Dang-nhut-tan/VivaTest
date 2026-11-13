@@ -1,11 +1,25 @@
-name: Playwright Tests (Scheduled & Sharded)
+name: Playwright Tests (CI & Scheduled Sharding)
 
 on:
+  # 1. Kích hoạt khi tạo PR hoặc đẩy thêm commit vào PR trỏ về nhánh main
+  pull_request:
+    branches: [ main ]
+
+  # 2. Kích hoạt khi merge code trực tiếp vào nhánh main
+  push:
+    branches: [ main ]
+
+  # 3. Kích hoạt tự động lúc 12:00 trưa giờ Việt Nam (UTC+7) = 05:00 UTC hàng ngày
   schedule:
-    # 12:00 trưa giờ Việt Nam (UTC+7) = 05:00 UTC hàng ngày
     - cron: '0 5 * * *'
-  # Cho phép kích hoạt thủ công từ giao diện GitHub Actions (Actions -> Run workflow)
+
+  # 4. Cho phép kích hoạt thủ công bất kỳ lúc nào từ tab Actions trên GitHub
   workflow_dispatch:
+
+# Tự động hủy lần chạy cũ nếu có commit mới được đẩy lên cùng một PR (tiết kiệm tài nguyên CI)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:
