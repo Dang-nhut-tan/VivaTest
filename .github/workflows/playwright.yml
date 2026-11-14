@@ -9,9 +9,9 @@ on:
   push:
     branches: [ main ]
 
-  # 3. Kích hoạt tự động lúc 12:00 trưa giờ Việt Nam (UTC+7) = 05:00 UTC hàng ngày
+  # 3. Kích hoạt tự động lúc 12:07 trưa giờ Việt Nam (UTC+7) = 05:07 UTC hàng ngày (lệch 7 phút tránh quá tải đầu giờ)
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '7 5 * * *'
 
   # 4. Cho phép kích hoạt thủ công bất kỳ lúc nào từ tab Actions trên GitHub
   workflow_dispatch:
