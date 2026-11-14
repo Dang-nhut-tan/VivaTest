@@ -11,7 +11,7 @@ on:
 
   # 3. Kích hoạt tự động lúc 12:00 trưa giờ Việt Nam (UTC+7) = 05:00 UTC hàng ngày
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '*/15 * * * *'
 
   # 4. Cho phép kích hoạt thủ công bất kỳ lúc nào từ tab Actions trên GitHub
   workflow_dispatch:
